@@ -309,6 +309,13 @@ footer{padding:40px 0 60px;text-align:center;color:var(--mute);font-size:.88rem}
 
   <button onclick="generateDreamImage()"
   style="padding:15px 25px;border-radius:30px;background:linear-gradient(90deg,#8b3dff,#ff3da6);color:white;border:0;margin:10px;cursor:pointer">
+    <select id="imageStyle" class="dream-style">
+  <option value="Realistic photography">Realistic</option>
+  <option value="Anime illustration">Anime</option>
+  <option value="Fantasy digital art">Fantasy</option>
+  <option value="3D rendered artwork">3D Art</option>
+  <option value="Professional digital painting">Digital Art</option>
+</select>
   ✨ Generate Image
   </button>
 
@@ -479,6 +486,7 @@ animateDream();
   <script>
 async function generateDreamImage() {
   const prompt = document.getElementById("imagePrompt").value.trim();
+  const style = document.getElementById("imageStyle").value;
   const message = document.getElementById("imageMessage");
   const result = document.getElementById("imageResult");
   const download = document.getElementById("downloadImage");
@@ -500,7 +508,7 @@ async function generateDreamImage() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({ prompt: `${prompt}, style: ${style}` })
       }
     );
 
