@@ -294,35 +294,33 @@ footer{padding:40px 0 60px;text-align:center;color:var(--mute);font-size:.88rem}
     this.reset();var r=this.getBoundingClientRect();pop(r.left+r.width/2,r.top+r.height/2,60)});
 })();
 </script>
-<!-- DREAMSPACE WORLD CREATOR -->
-<section id="world-creator" style="padding:80px 20px;text-align:center;background:#090414;color:white">
-  <h2 style="font-size:40px">Create Your <span style="color:#b86cff">Dream World</span></h2>
-  <p>Describe your imagination and enter a new world.</p>
+<!-- DREAMSPACE AI IMAGE GENERATOR -->
+<section id="image-generator" style="padding:80px 20px;text-align:center;background:#090414;color:white">
 
-  <input id="worldPrompt" placeholder="A magical purple floating island..."
+  <h2 style="font-size:40px">
+    Create Your <span style="color:#b86cff">Dream Image</span>
+  </h2>
+
+  <p>Turn your imagination into beautiful art ✨</p>
+
+  <input id="imagePrompt"
+  placeholder="Describe your dream image..."
   style="padding:15px;width:min(500px,90%);border-radius:30px;border:1px solid #b86cff;background:#160b2c;color:white">
 
-  <button onclick="createDreamWorld()"
+  <button onclick="generateDreamImage()"
   style="padding:15px 25px;border-radius:30px;background:linear-gradient(90deg,#8b3dff,#ff3da6);color:white;border:0;margin:10px;cursor:pointer">
-  ✨ Generate World
+  ✨ Generate Image
   </button>
 
-  <div id="worldMessage" style="margin:20px;color:#c9a8ff"></div>
+  <div id="imageMessage" style="margin:20px;color:#c9a8ff"></div>
+
+  <div id="imageResult"></div>
+
+  <a id="downloadImage" style="display:none;color:#ff3da6;margin:20px">
+    Download Image
+  </a>
+
 </section>
-
-<script>
-function createDreamWorld(){
-  const prompt=document.getElementById("worldPrompt").value.trim();
-  const message=document.getElementById("worldMessage");
-
-  if(!prompt){
-    message.textContent="Please describe your dream world first ✨";
-    return;
-  }
-
-  message.textContent="Your dream world idea: "+prompt+
-  " 🌌 (3D generation engine coming next!)";
-}
 </script></script>
   ✨ Generate World
   </button>
