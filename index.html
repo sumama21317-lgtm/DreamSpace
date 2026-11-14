@@ -476,5 +476,61 @@ function animateDream(){
 }
 animateDream();
 </script>
+  <script>
+async function generateDreamImage() {
+  const prompt = document.getElementById("imagePrompt").value.trim();
+  const message = document.getElementById("imageMessage");
+  const result = document.getElementById("imageResult");
+  const download = document.getElementById("downloadImage");
+
+  if (!prompt) {
+    message.textContent = "Please describe your dream image!";
+    return;
+  }
+
+  message.textContent = "Creating your dream image... Please wait!";
+  result.innerHTML = "";
+  download.style.display = "none";
+
+  try {
+    const response = await fetch(
+      "https://dreamspace-api.sumama21317.workers.dev/generate-image",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || "Image generation failed.");
+    }
+
+    const imageUrl = data.dataURI;
+
+    result.innerHTML = `
+      <img
+        src="${imageUrl}"
+        alt="Your Dream Image"
+        style="width:100%;max-width:600px;border-radius:18px;margin-top:20px;"
+      >
+    `;
+
+    download.href = imageUrl;
+    download.download = "DreamSpace-Image.jpg";
+    download.style.display = "inline-block";
+    download.textContent = "Download Image";
+
+    message.textContent = "Your dream image is ready! ✨";
+
+  } catch (error) {
+    message.textContent = "Error: " + error.message;
+  }
+}
+</script>
 </body>
 </html>
